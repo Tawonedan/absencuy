@@ -70,9 +70,9 @@ foreach ($kelasMengajar as $d)
                             INNER JOIN tb_mengajar ON _logabsensi.id_mengajar=tb_mengajar.id_mengajar
                             INNER JOIN tb_master_mapel ON _logabsensi.id_siswa=tb_master_mapel.id_mapel
 							INNER JOIN tb_siswa ON tb_mengajar.id_mkelas=tb_siswa.id_mkelas
-							INNER JOIN tb_guru ON tb_mengajar.id_guru=tb_guru.id_guru	
+							INNER JOIN tb_guru ON tb_mengajar.id_guru=tb_guru.id_guru
 							
-
+							WHERE _logabsensi.tgl_absen BETWEEN '2023-10-01' AND '2023-10-31';
                             "
 													// -- $mapel = mysqli_query($con,"SELECT * FROM tb_mengajar 
 													// INNER JOIN tb_guru ON tb_mengajar.id_guru=tb_guru.id_guru
@@ -90,7 +90,10 @@ foreach ($kelasMengajar as $d)
 
 											<tr>
 											<th scope="row"><b><?=$no++; ?>.</b></th>
-												<td><?=$d['hari'] ?></td>
+												<td>
+												<b><?=$d['hari'] ?></b><br>
+													<code><?=$d['tgl_absen'] ?></code>
+												</td>
 												<td><?=$d['nama_siswa'] ?></td>
 												<td>
 													<b><?=$d['jamke'] ?></b><br>
@@ -99,7 +102,7 @@ foreach ($kelasMengajar as $d)
 												<td><?=$d['ket'] ?></td>
 											</tr>
 											<?php } ?>
-											<tr>
+											<!-- <tr>
 												<td>1.</td>
 												<td>MP-1698209010</td>
 												<td>
@@ -113,7 +116,7 @@ foreach ($kelasMengajar as $d)
 												Rekap Absen
 												
 												</td>
-											</tr>
+											</tr> -->
 										</tbody>
 									</table>				
 								</div>
