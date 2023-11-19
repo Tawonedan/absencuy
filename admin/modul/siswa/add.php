@@ -91,6 +91,11 @@
     <td><input name="th_masuk" type="number" class="form-control" placeholder="2019"></td>
   </tr>
   <tr>
+    <td>Password</td>
+    <td>:</td>
+    <td><input name="password" type="password" class="form-control" placeholder="password"></td>
+  </tr>
+  <tr>
     <td>Pas Foto</td>
     <td>:</td>
     <td><input type="file" class="form-control" name="foto"></td>
@@ -103,6 +108,31 @@
   </tr>
 </table>
 </form>
+
+<?php 
+
+if (isset($_POST['saveSiswa'])) {
+
+    $password = sha1($_POST['password']);
+
+    if (empty($foto)) {
+        $foto = "default.jpg";
+    }
+    
+    $save= mysqli_query($con,"INSERT INTO `tb_siswa` (`id_siswa`, `nis`, `nama_siswa`, `tempat_lahir`, `tgl_lahir`, `jk`, `alamat`, `password`, `foto`, `status`, `th_angkatan`, `id_mkelas`) VALUES (NULL, '121', '121', '121', '2023-10-01', 'L', '121', '121', '', '1', '2021', '1');");
+    
+
+    // if ($insert) {
+    //     // The query was successful.
+    //     // Execute the following code.
+    // } else {
+    //     // The query failed.
+    //     // Display an error message.
+    // }
+}
+
+?>
+
 </div>
 </div>
 </div>

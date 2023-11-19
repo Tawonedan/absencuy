@@ -117,54 +117,36 @@ if (mysqli_num_rows($siswa_telah_absen_hari_ini) < 1) {
 
 ?>
 													<!-- (<code><?=$s['nis'] ?></code>) -->
-													<input type="hidden" name="id_siswa-<?=$i;?>" value="<?=$s['id_siswa'] ?>">
+													<input type="hidden" name="id_siswa" value="<?=$s['id_siswa'] ?>">
 
 													<input type="hidden" name="pelajaran" value="<?=$_GET['pelajaran'] ?>">
 												</div>
 												<div class="status mt-0">
 													<div class="form-check">
 														<label class="form-check-inline">
-														<input name="ket-<?=$i;?>" class="form-check-input" type="radio" value="H">
+														<input name="ket" class="form-check-input" type="radio" value="H">
 														<span class="form-check-sign">H</span>
 														</label>
 
 														<label class="form-check-inline">
-														<input name="ket-<?=$i;?>" class="form-check-input" type="radio" value="I" >
+														<input name="ket" class="form-check-input" type="radio" value="I" >
 														<span class="form-check-sign">I</span>
 														</label>
 															<label class="form-check-inline">
-														<input name="ket-<?=$i;?>" class="form-check-input" type="radio" value="S" >
+														<input name="ket" class="form-check-input" type="radio" value="S" >
 														<span class="form-check-sign">S</span>
 														</label> 
 
 														<label class="form-check-inline">
-														<input name="ket-<?=$i;?>" class="form-check-input" type="radio" value="A">
+														<input name="ket" class="form-check-input" type="radio" value="A">
 														<span class="form-check-sign">A</span>
 														</label>
-
-														
-						<label>
-								
-						</label>
-
 													</div>
-
-
-														
-
-													
-
-													
 												</div>
 											</div>
-											
-											
 										</div>
 									<?php } ?>								
 									
-										
-									
-										
 									</div>
 									<!-- <input type="submit" name="absen" class="btn btn-info"> -->
 									<center>
@@ -183,69 +165,69 @@ if (mysqli_num_rows($siswa_telah_absen_hari_ini) < 1) {
 								<?php 
 									if (isset($_POST['absen'])) {
 										
-										$total = $jumlahSiswa-1;
-										$today = $_POST['tgl'];
-										$pertemuan = $_POST['pertemuan'];
+										// $total = $jumlahSiswa-1;
+										// $today = $_POST['tgl'];
+										// $pertemuan = $_POST['pertemuan'];
 
-										for ($i =0; $i <=$total ; $i++) {
+										// for ($i =0; $i <=$total ; $i++) {
 
-											$id_siswa = $_POST['id_siswa-'.$i];
-											$pelajaran = $_POST['pelajaran'];
-											$ket = $_POST['ket-'.$i];
-
-
-											$cekAbsesnHariIni = mysqli_num_rows(mysqli_query($con,"SELECT * FROM _logabsensi WHERE tgl_absen='$today' AND id_mengajar='$pelajaran' AND id_siswa='$id_siswa' "));
-
-											if ($cekAbsesnHariIni > 0) {
+										// 	$id_siswa = $_POST['id_siswa-'.$i];
+										// 	$pelajaran = $_POST['pelajaran'];
+										// 	$ket = $_POST['ket-'.$i];
 
 
-													echo "
-													<script type='text/javascript'>
-													setTimeout(function () { 
+										// 	$cekAbsesnHariIni = mysqli_num_rows(mysqli_query($con,"SELECT * FROM _logabsensi WHERE tgl_absen='$today' AND id_mengajar='$pelajaran' AND id_siswa='$id_siswa' "));
 
-													swal('Sorry!', 'Absen Hari ini sudah dilakukan', {
-													icon : 'error',
-													buttons: {        			
-													confirm: {
-													className : 'btn btn-danger'
-													}
-													},
-													});    
-													},10);  
-													window.setTimeout(function(){ 
-													window.location.replace('?page=absen&pelajaran=$_GET[pelajaran]');
-													} ,3000);   
-													</script>";
+										// 	if ($cekAbsesnHariIni > 0) {
+
+
+										// 			echo "
+										// 			<script type='text/javascript'>
+										// 			setTimeout(function () { 
+
+										// 			swal('Sorry!', 'Absen Hari ini sudah dilakukan', {
+										// 			icon : 'error',
+										// 			buttons: {        			
+										// 			confirm: {
+										// 			className : 'btn btn-danger'
+										// 			}
+										// 			},
+										// 			});    
+										// 			},10);  
+										// 			window.setTimeout(function(){ 
+										// 			window.location.replace('?page=absen&pelajaran=$_GET[pelajaran]');
+										// 			} ,3000);   
+										// 			</script>";
 							
-											}else{
+										// 	}else{
 
-												$insert = mysqli_query($con,"INSERT INTO _logabsensi VALUES (NULL,'$pelajaran','$id_siswa','$today','$ket','$pertemuan')");
+												$absen = mysqli_query($con,"INSERT INTO _logabsensi (`id_presensi`, `id_mengajar`, `id_siswa`, `tgl_absen`, `ket`, `pertemuan_ke`) VALUES (NULL,'$_POST[pelajaran]','$_POST[id_siswa]','$_POST[tgl]','$_POST[ket]','$_POST[pertemuan]')");
+												
+										// if ($insert) {
+										// 	echo "
+										// 	<script>
+										// 	console.log('knok');
+										// </script>		
+										// 	";
+										// 	}
 
-										if ($insert) {
+											// <script type='text/javascript'>
+											// setTimeout(function () { 
 
-
-											echo "
-											<script type='text/javascript'>
-											setTimeout(function () { 
-
-											swal('Berhasil', 'Absen hari ini telah tersimpan!', {
-											icon : 'success',
-											buttons: {        			
-											confirm: {
-											className : 'btn btn-success'
-											}
-											},
-											});    
-											},10);  
-											window.setTimeout(function(){ 
-											window.location.replace('?page=absen&pelajaran=$_GET[pelajaran]');
-											} ,3000);   
-											</script>";
-
-
-											}
-
-
+											// swal('Berhasil', 'Absen hari ini telah tersimpan!', {
+											// icon : 'success',
+											// buttons: {        			
+											// confirm: {
+											// className : 'btn btn-success'
+											// }
+											// },
+											// });    
+											// },10);  
+											// window.setTimeout(function(){ 
+											// window.location.replace('?page=absen&pelajaran=$_GET[pelajaran]');
+											// } ,3000);   
+											// </script>
+											
 										
 
 
@@ -255,10 +237,10 @@ if (mysqli_num_rows($siswa_telah_absen_hari_ini) < 1) {
 
 
 											
-										}
+									// 	}
 
 
-									}
+									// }
 
 								 ?>
 								 

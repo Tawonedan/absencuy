@@ -29,7 +29,7 @@
                       <h3 class="h4">Form Entry Guru</h3>
                     </div>
                     <div class="card-body">
-						<form action="" method="post" >
+						<!-- <form action="" method="post" >
 							<div class="form-group">
 								<label>NIP/NUPTK</label>
 								<input name="nip" type="text" class="form-control" placeholder="NIP/NUPTK">								
@@ -65,9 +65,38 @@
 
 							<div class="form-group">
 								<button name="save" type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
-								<!-- <a href="javascript:history.back()" class="btn btn-warning"><i class="fa fa-chevron-left"></i> Batal</a> -->
 							</div>
-						</form>
+						</form> -->
+
+            <form action="" method="post" class="form-horizontal">
+                     <div class="form-group">
+                        <label>nip</label>
+                        <input name="nip" type="text"  placeholder="nip" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>email</label>
+                        <input name="email" type="text" placeholder="nama guru" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>nama guru</label>
+                        <input name="nama" type="text" placeholder="nama guru" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>password</label>
+                        <input name="password" type="password" placeholder="pass" class="form-control">
+                    </div>
+                    <div class="form-group">
+								<p>
+									<img src="../assets/img/user/<?=$data['foto']; ?>" class="img-fluid rounded-circle kotak" style="height: 65px; width: 65px;">
+								</p>
+								<label>Foto</label>
+								<input type="file" name="foto">
+							</div>
+                   
+                    <div class="form-group">                     
+                            <button name="save" class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </form>
 
 
                     <!-- $save= mysqli_query($con,"INSERT INTO `tb_guru` (`id_guru`, `nip`, `nama_guru`, `email`, `password`, `foto`, `status`) VALUES (NULL, '$_POST[nip]','$_POST[nama]','$_POST[email]','$_POST[password]',NULL,'$_POST[status]') ");
@@ -84,25 +113,22 @@ if (isset($_POST['save'])) {
     $nip = $_POST['nip'];
     $nama_guru = $_POST['nama'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
-    $foto = $_POST['foto'];
-    $status = $_POST['status'];
+    $password = sha1($_POST['password']);
 
     if (empty($foto)) {
         $foto = "default.jpg";
     }
+    
+      $save= mysqli_query($con,"INSERT INTO `tb_guru` (`id_guru`, `nip`, `nama_guru`, `email`, `password`, `foto`, `status`) VALUES (NULL, '$_POST[nip]', '$_POST[nama]', '$_POST[email]', '$password', '$_POST[foto]', 'Y');");
+    
 
-    $query = "INSERT INTO tb_guru VALUES (NULL,'$nip','$nama_guru','$email','$password','$mapel','$foto','$status')";
-
-    $insert = mysqli_query($con, $query);
-
-    if ($insert) {
-        // The query was successful.
-        // Execute the following code.
-    } else {
-        // The query failed.
-        // Display an error message.
-    }
+    // if ($insert) {
+    //     // The query was successful.
+    //     // Execute the following code.
+    // } else {
+    //     // The query failed.
+    //     // Display an error message.
+    // }
 }
 
 ?>

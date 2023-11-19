@@ -26,7 +26,7 @@
 									</div>
 									<div class="card-category">
 										<center>
-										Jl. Nginden Semolo No.44, Nginden Jangkungan, Kec. Sukolilo, Surabaya, Jawa Timur 60118
+										Jl. Blauran Semolo No.44, Nginden Jangkungan, Kec. Sukolilo, Surabaya, Jawa Timur 60118
 										</center>
 									</div>
 								
